@@ -5,10 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\PricePeriod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use App\Services\PricePeriodService;
 use App\Http\Requests\PricePeriodRequest;
 
 class PricePeriodController extends Controller
 {
+    private $service;
+
+    public function __construct()
+    {
+        $this->service = new PricePeriodService();
+    }
+
     public function index()
     {
         $price_periods = PricePeriod::all();
@@ -53,5 +61,16 @@ class PricePeriodController extends Controller
     {
         PricePeriod::destroy($pricePeriod->id);
         return response('Deleted', 200);
+    }
+
+    public function getPrices(Request $request)
+    {
+        $periods = $this->service->getPrices($request);
+        $total_price = $this->service->calculateTotalPrice($periods);
+
+        return response()->json([
+            'periods'=> $periods,
+            'total_price' => $total_price
+        ], 200);
     }
 }

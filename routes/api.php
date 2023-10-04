@@ -14,6 +14,8 @@ use App\Http\Controllers\PricePeriodController;
 |
 */
 
+Route::post('/prices', [PricePeriodController::class, 'getPrices']);
+
 Route::get('/price-period', [PricePeriodController::class, 'index']);
 Route::get('/price-period/{pricePeriod}', [PricePeriodController::class, 'show']);
 Route::post('/price-period', [PricePeriodController::class, 'store']);

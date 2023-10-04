@@ -24,7 +24,7 @@ class PricePeriodRequest extends FormRequest
         return [
             'start_date' => 'required|date',
             'end_date' => 'required|date',
-            'price_per_day' => 'required|numeric|min:'.config('trc.default_price_per_day')
+            'price_per_day' => 'required|numeric'
         ];
     }
 }
