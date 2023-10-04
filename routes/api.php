@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PricePeriodController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/price-period', [PricePeriodController::class, 'index']);
+Route::get('/price-period/{pricePeriod}', [PricePeriodController::class, 'show']);
+Route::post('/price-period', [PricePeriodController::class, 'store']);
+Route::post('/price-period/{pricePeriod}', [PricePeriodController::class, 'update']);
+Route::delete('/price-period/{pricePeriod}', [PricePeriodController::class, 'destroy']);
+
+Route::middleware('auth:sanctum')->group(function () {
 });
