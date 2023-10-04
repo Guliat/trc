@@ -16,5 +16,4 @@ class PricePeriod extends Model
         'start_date',
         'end_date'
     ];
-
 }
