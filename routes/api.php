@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PricePeriodController;
 
@@ -16,11 +17,11 @@ use App\Http\Controllers\PricePeriodController;
 
 Route::post('/prices', [PricePeriodController::class, 'getPrices']);
 
-Route::get('/price-period', [PricePeriodController::class, 'index']);
-Route::get('/price-period/{pricePeriod}', [PricePeriodController::class, 'show']);
-Route::post('/price-period', [PricePeriodController::class, 'store']);
-Route::post('/price-period/{pricePeriod}', [PricePeriodController::class, 'update']);
-Route::delete('/price-period/{pricePeriod}', [PricePeriodController::class, 'destroy']);
-
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/check-auth', function () { return 'true';});
+    Route::get('/price-period', [PricePeriodController::class, 'index']);
+    Route::get('/price-period/{pricePeriod}', [PricePeriodController::class, 'show']);
+    Route::post('/price-period', [PricePeriodController::class, 'store']);
+    Route::post('/price-period/{pricePeriod}', [PricePeriodController::class, 'update']);
+    Route::delete('/price-period/{pricePeriod}', [PricePeriodController::class, 'destroy']);
 });
