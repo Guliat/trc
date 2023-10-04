@@ -21,6 +21,10 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+                if ($request->expectsJson())
+                {
+                    return response()->json(['message' => 'You are already logged in.'], 200);
+                }
                 return redirect(RouteServiceProvider::HOME);
             }
         }
